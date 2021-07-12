@@ -7,13 +7,15 @@
  */
 
 import React from 'react';
+import { Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import CoinsStack from "../src/components/coins/CoinsStack";
+
+import Tabs from "./src/components/Tabs";
 
 const App = ()  => {
   return (
     <NavigationContainer>
-      <CoinsStack />
+      <Tabs />
     </NavigationContainer>
   );
 };
