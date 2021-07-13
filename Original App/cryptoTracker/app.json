@@ -1,0 +1,8 @@
+{
+  "name": "cryptoTracker",
+  "displayName": "cryptoTracker",
+  "expo": {
+    "name": "cryptoTracker",
+    "slug": "cryptoTracker"
+  }
+}
