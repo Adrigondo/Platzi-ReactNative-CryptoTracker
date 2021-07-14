@@ -13,7 +13,6 @@ const FavoritesStack = () => {
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.primaryColor,
-          // shadowColor: Colors.darkColor,
         },
         headerTintColor: Colors.lightPrimaryColor,
       }}

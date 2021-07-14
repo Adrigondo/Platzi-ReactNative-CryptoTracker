@@ -2,9 +2,9 @@ import React from 'react';
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import CoinsStack from "./coins/CoinsStack";
-import FavoritesStack from "./favorites/FavoritesStack";
-import UserStack from "./users/UserStack";
+import Coins from "./coins/CoinsScreen";
+import Favorites from "./favorites/FavoritesScreen";
+import Profile from "./users/ProfileScreen";
 import Colors from "../resources/colors";
 
 import coinsIcon from "../assets/bank.png";
@@ -26,7 +26,7 @@ const App = ()  => {
     >
       <Tabs.Screen
         name= "Coins"
-        component={CoinsStack}
+        component={Coins}
         options={{
           tabBarIcon: ({size, color}) => (
             <Image
@@ -38,7 +38,7 @@ const App = ()  => {
       />
       <Tabs.Screen
         name= "Favorites"
-        component={FavoritesStack}
+        component={Favorites}
         options={{
           tabBarIcon: ({size, color}) => (
             <Image
@@ -49,8 +49,8 @@ const App = ()  => {
         }}
       />
       <Tabs.Screen
-        name= "User"
-        component={UserStack}
+        name= "Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({size, color}) => (
             <Image
