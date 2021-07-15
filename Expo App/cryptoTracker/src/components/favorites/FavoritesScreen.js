@@ -43,7 +43,7 @@ class FavoritesScreen extends React.Component {
 
       var favoritesID = await StorageApp.instance.multiGet(keys);
       favoritesID = favoritesID.map((fav) => JSON.parse(fav[1]));
-      console.log('FavoritesID:', favoritesID);
+      // console.log('FavoritesID:', favoritesID);
       this.setState({ favoritesID, loading: false }, () => this.getCoins());
     } catch (error) {
       console.log('Get Favorites Error:', error);
@@ -105,18 +105,12 @@ class FavoritesScreen extends React.Component {
 
   render() {
     const { favorites, favoritesFiltered, loading } = this.state;
+    // console.log(favorites);
     return (
       <View style={styles.container}>
-        {loading && (
-          <ActivityIndicator
-            color="#fff"
-            size="large"
-            style={GeneralStyles.loader}
-          />
-        )}
-        {!loading && !favorites.length && <FavoritesEmptyState />}
-        {!loading && favorites.length > 0 && (
-          <>
+        {!favorites.length && <FavoritesEmptyState />}
+        {favorites.length > 0 && (
+          <View>
             <CoinsSearch onChange={this.handleSearch} />
             <FlatList
               data={favoritesFiltered}
@@ -125,7 +119,14 @@ class FavoritesScreen extends React.Component {
                 <CoinsItem item={item} onPress={() => this.handlePress(item)} />
               )}
             />
-          </>
+          </View>
+        )}
+        {loading && (
+          <ActivityIndicator
+            color="#fff"
+            size="large"
+            style={GeneralStyles.loader}
+          />
         )}
       </View>
     );

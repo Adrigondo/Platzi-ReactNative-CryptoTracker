@@ -21,7 +21,8 @@ const App = ()  => {
         // activeTintColor: Colors.gray,
         style:{
           backgroundColor: Colors.primaryColor,
-        }
+        },
+        keyboardHidesTabBar: true,
       }}
     >
       <Tabs.Screen
@@ -48,7 +49,7 @@ const App = ()  => {
           )
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name= "Profile"
         component={Profile}
         options={{
@@ -59,7 +60,7 @@ const App = ()  => {
             />
           )
         }}
-      />
+      /> */}
     </Tabs.Navigator>
   );
 };
