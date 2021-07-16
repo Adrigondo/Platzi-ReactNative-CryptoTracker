@@ -29,14 +29,6 @@ const DetailHeader = ({scene, navigation }) => {
             : headerTitle
         }
       />
-      <Pressable
-        onPress={()=>navigation.navigate("Profile")}
-      >
-        <Image
-          style={headerStyles.profileImage}
-          source={{uri: "https://gravatar.com/avatar/74b143021b70bb936f4edbc9e11ecb1b?d=identicon"}}
-        />
-      </Pressable>
     </Appbar.Header>
   );
 }

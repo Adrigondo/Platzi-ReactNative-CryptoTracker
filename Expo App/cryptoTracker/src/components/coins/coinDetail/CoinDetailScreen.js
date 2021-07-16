@@ -235,20 +235,21 @@ class CoinDetailsScreen extends React.Component {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: Colors.secondaryColor,
+    backgroundColor: Colors.primaryColor,
   },
   badgeContainer: {
     margin: 10,
     borderRadius: 20,
-    backgroundColor: "rgba(0,0,0,0.1)",
+    borderTopLeftRadius: 40,
+    backgroundColor: "rgba(100,100,100,0.1)",
   },
   subHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     padding: 16,
-    borderTopLeftRadius: 20,
+    borderTopLeftRadius: 40,
     borderTopRightRadius: 20,
   },
   subHeaderCoin: {
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
   //   maxHeight: 240, 
   // },
   sectionHeader: {
-    backgroundColor: "rgba(0,0,0,0.3)",
+    backgroundColor: "rgba(0,0,0,0.4)",
   },
   sectionHeaderText: {
     fontWeight: "bold",
