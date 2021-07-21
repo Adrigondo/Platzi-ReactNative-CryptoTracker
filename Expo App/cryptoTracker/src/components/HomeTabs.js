@@ -1,15 +1,15 @@
 import React from 'react';
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Coins from "./coins/CoinsScreen";
 import Favorites from "./favorites/FavoritesScreen";
-import Profile from "./users/ProfileScreen";
+import Travel from "./travels/TravelScreen";
 import Colors from "../resources/colors";
 
 import coinsIcon from "../assets/bank.png";
 import favoritesIcon from "../assets/star.png";
-import userIcon from "../assets/user.png";
 
 const Tabs = createBottomTabNavigator();
 
@@ -49,18 +49,19 @@ const App = ()  => {
           )
         }}
       />
-      {/* <Tabs.Screen
-        name= "Profile"
-        component={Profile}
+      <Tabs.Screen
+        name= "Travel"
+        component={Travel}
         options={{
-          tabBarIcon: ({size, color}) => (
-            <Image
-              style={{tintColor: color, width: size, height: size}}
-              source={userIcon}
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons
+              name="map"
+              color= {color}
+              size= {size}
             />
           )
         }}
-      /> */}
+      />
     </Tabs.Navigator>
   );
 };

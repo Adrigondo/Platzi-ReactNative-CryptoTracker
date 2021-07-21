@@ -24,10 +24,12 @@ const DetailHeader = ({scene, navigation }) => {
         title={headerTitle}
       />
       <Appbar.Action
-        icon="account-edit"
+        onPress={ ()=>navigation.pop() }
+        icon="content-save"
         color="white"
       />
       <Appbar.Action
+        onPress={ ()=>navigation.pop() }
         icon="dots-vertical"
         color="white"
       />

@@ -15,7 +15,7 @@ import GeneralStyles from '../../resources/generalStyles';
 
 import FavoritesEmptyState from './FavoritesEmptyState';
 import CoinsItem from '../coins/CoinsItem';
-import CoinsSearch from '../coins/CoinsSearch';
+import Searcher from '../general/Searcher';
 
 class FavoritesScreen extends React.Component {
   state = {
@@ -111,7 +111,10 @@ class FavoritesScreen extends React.Component {
         {!favorites.length && <FavoritesEmptyState />}
         {favorites.length > 0 && (
           <View>
-            <CoinsSearch onChange={this.handleSearch} />
+            <Searcher
+              onChange={this.handleSearch}
+              placeholder={"Search coins..."}
+            />
             <FlatList
               data={favoritesFiltered}
               keyExtractor={(item) => item.id}

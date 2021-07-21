@@ -1,11 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import StackHeader from "./util/StackHeader"
+import HeaderStack from "./header/HeaderStack"
 import HomeTabs from "./HomeTabs"
 import CoinDetail from "./coins/coinDetail/CoinDetailScreen";
 import Profile from "./users/ProfileScreen";
+import UserCreate from "./users/UserCreateScreen";
+import ProfileEdit from "./users/ProfileEditScreen";
 import Colors from "../resources/colors";
+import UsersSearch from './users/UsersSearchScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +19,7 @@ const HomeStack = () => {
       headerMode="screen"
       screenOptions={{
         header: ({ scene, navigation }) => (
-          <StackHeader scene={scene} navigation={navigation} />
+          <HeaderStack scene={scene} navigation={navigation} />
         )
         // headerStyle: {
         //   backgroundColor: Colors.primaryColor,
@@ -47,6 +50,27 @@ const HomeStack = () => {
         component= {Profile}
         options={
           {headerTitle: "Profile"}
+        }
+      />
+      <Stack.Screen
+        name= "UserCreate"
+        component= {UserCreate}
+        options={
+          {headerTitle: "Sign up!"}
+        }
+      />
+      <Stack.Screen
+        name= "ProfileEdit"
+        component= {ProfileEdit}
+        options={
+          {headerTitle: "Edit Profile"}
+        }
+      />
+      <Stack.Screen
+        name= "UsersSearch"
+        component= {UsersSearch}
+        options={
+          {headerTitle: ""}
         }
       />
     </Stack.Navigator>

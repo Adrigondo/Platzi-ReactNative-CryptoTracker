@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import HomeStack from "./src/components/HomeStack";
 
-import { setCustomText } from 'react-native-global-props';
+import { setCustomText, setCustomTextInput } from 'react-native-global-props';
 
 const customTextProps = {
   style: {
@@ -11,8 +11,13 @@ const customTextProps = {
     color: "white",
   }
 };
-
+const customTextInputProps = {
+  style: {
+    color: "blue",
+  }
+}
 setCustomText(customTextProps);
+setCustomTextInput(customTextInputProps);
 
 export default function App() {
   return (

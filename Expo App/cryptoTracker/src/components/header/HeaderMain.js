@@ -27,7 +27,9 @@ const MainHeader = ({scene, navigation }) => {
         title={headerTitle}
       />
       <Pressable
-        onPress={()=>navigation.navigate("Profile")}
+        // onPress={()=>navigation.navigate("Profile")}
+        onPress={()=>navigation.navigate("UserCreate")}
+
       >
         <Image
           style={headerStyles.profileImage}

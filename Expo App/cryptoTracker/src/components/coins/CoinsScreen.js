@@ -11,7 +11,7 @@ import {
 import Http from "../../libs/http";
 
 import CoinsItem from "./CoinsItem";
-import CoinsSearch from "./CoinsSearch";
+import Searcher from "../general/Searcher";
 import Colors from "../../resources/colors";
 import GeneralStyles from "../../resources/generalStyles";
 
@@ -43,7 +43,6 @@ class CoinsScreen extends React.Component {
         coins: response.data,
         coinsFiltered: response.data,
       });
-
     }catch(error){
       this.setState({
         loading: false,
@@ -89,7 +88,10 @@ class CoinsScreen extends React.Component {
             />
           : <>
             <View>
-              <CoinsSearch onChange={this.handleSearch}/>
+              <Searcher
+                onChange={this.handleSearch}
+                placeholder={"Search coins..."}
+              />
             </View>
             <FlatList
               data={coinsFiltered}

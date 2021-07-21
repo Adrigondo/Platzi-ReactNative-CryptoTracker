@@ -2,6 +2,7 @@ import React from "react";
 import {
   View,
   Text,
+  TextInput,
   Pressable,
   StyleSheet,
   FlatList,
@@ -101,8 +102,20 @@ class ProfileScreen extends React.Component {
 
       ]
     },
-    isFriendsActive: false,
-    isGroupsActive: false,
+    form: {},
+  }
+  componentDidMount() {
+    const { profile } = this.state.user;
+    this.setState({
+      form: {
+        phone: profile.phone,
+        email: profile.email,
+        age: profile.age,
+        genre: profile.genre,
+        scholarship: profile.scholarship,
+        picture: profile.picture,
+      }
+    })
   }
   handleList = (selected) => {
     if (selected === "friends") {
@@ -122,136 +135,110 @@ class ProfileScreen extends React.Component {
   handlePage = (page) => {
     this.props.navigation.navigate(page);
   }
+  handleText = e => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
   render() {
     const { profile, friends, groups } = this.state.user;
-    const { isFriendsActive, isGroupsActive } = this.state;
-
+    const { form } = this.state;
     return (
       <View style={styles.container}>
-        <FlatList
-          contentContainerStyle={styles.list}
-          ListHeaderComponent={
-            <>
-            <View style={[styles.profileInformation]}>
-              <View style={styles.header}>
-                <View>
-                  <Avatar.Image
-                    size={100}
-                    style={styles.profileImage}
-                    source={{ uri: profile.picture }}
-                  />
-                </View>
-                <View>
-                  <Text style={[styles.profileName, GeneralStyles.whiteText, {textAlign: "center"}]}>
-                    {profile.firstName} {profile.lastName}
-                  </Text>
-                  <Text style={[styles.profileUsername, GeneralStyles.whiteText, {textAlign: "center"}]}>
-                    @{profile.username}
-                  </Text>
-                </View>
-              </View>
-              <View style={[{alignItems: "center"}]}>
-                <View style={[styles.profileField]}>
-                  <MaterialCommunityIcons
-                    name="phone"
-                    size={20}
-                    color={"#fff"}
-                  />
-                  <Text style={[styles.profileFieldText]}>{profile.phone}</Text>
-                </View>
-                <View style={[styles.profileField]}>
-                  <MaterialCommunityIcons
-                    name="email"
-                    size={20}
-                    color={"#fff"}
-                  />
-                  <Text style={[styles.profileFieldText]}>{profile.email}</Text>
-                </View>
-                <View style={[styles.profileField]}>
-                  <MaterialCommunityIcons
-                    name="baby-face"
-                    size={20}
-                    color={"#fff"}
-                  />
-                  <Text style={[styles.profileFieldText]}>{profile.age} years old</Text>
-                </View>
-                <View style={[styles.profileField]}>
-                  <MaterialCommunityIcons
-                    name="gender-male-female"
-                    size={20}
-                    color={"#fff"}
-                  />
-                  <Text style={[styles.profileFieldText]}>{profile.genre}</Text>
-                </View>
-                <View style={[styles.profileField]}>
-                  <MaterialCommunityIcons
-                    name="school"
-                    size={20}
-                    color={"#fff"}
-                  />
-                  <Text style={[styles.profileFieldText]}>{profile.scholarship}</Text>
-                </View>
-              </View>
+        <View style={[styles.profileInformation]}>
+          <View style={styles.header}>
+            <View>
+              <Avatar.Image
+                size={100}
+                style={styles.profileImage}
+                source={{ uri: profile.picture }}
+              />
             </View>
-            <View style={[styles.profileOptions, { marginBottom: 10 }]}>
-              <View style={[styles.buttonContainer]}>
-                <View style={[styles.buttonSection, {paddingRight: 10,}]}>
-                  <Pressable
-                    style={[styles.button, styles.editButton]}
-                    onPress={()=> this.handleList("friends")}
-                  >
-                    <MaterialCommunityIcons name="chevron-down" size={25} color="#fff"/>
-                    <Text style={[GeneralStyles.whiteText, {marginRight: 5,}]}>
-                      Friends
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.addButton]}
-                    onPress={()=>this.handlePage("UsersSearch")}
-                  >
-                    <MaterialCommunityIcons name="plus-thick" size={25} color="#fff"/>
-                  </Pressable>
-                </View>
-                <View style={[styles.buttonSection, {paddingLeft: 10,}]}>
-                  <Pressable
-                    style={[styles.button, styles.logOutButton]}
-                    onPress={()=> this.handleList("groups")}
-                  >
-                    <MaterialCommunityIcons name="chevron-down" size={25} color="#fff"/>
-                    <Text style={[GeneralStyles.whiteText, {marginRight: 5,}]}>
-                      Groups
-                    </Text>
-                  </Pressable>
-                  <Pressable style={[styles.addButton]}>
-                    <MaterialCommunityIcons name="plus-thick" size={25} color="#fff"/>
-                  </Pressable>
-                </View>
-              </View>
+            <View>
+              <Text style={[styles.profileName, GeneralStyles.whiteText, {textAlign: "center"}]}>
+                {profile.firstName} {profile.lastName}
+              </Text>
+              <Text style={[styles.profileUsername, GeneralStyles.whiteText, {textAlign: "center"}]}>
+                @{profile.username}
+              </Text>
             </View>
-            </>
-          }
-          data={
-            isFriendsActive ?
-              friends
-            : isGroupsActive ?
-              groups
-            : null
-          }
-          keyExtractor={
-            isFriendsActive ?
-              (item) => item.username.toString()
-            : isGroupsActive ?
-                (item) => item.id.toString()
-            : null
-          }
-          renderItem={({ item }) =>
-            <ProfileItemRender
-              item={item}
-              isFriendsActive={isFriendsActive}
-              isGroupsActive={isGroupsActive}
-            />
-          }
-        />
+          </View>
+          <View style={[{alignItems: "flex-start"}]}>
+            <View style={[styles.profileField]}>
+              <MaterialCommunityIcons
+                name="phone"
+                size={20}
+                color={"#fff"}
+              />
+              <TextInput
+                style={[styles.profileFieldText]}
+                value={form.phone}
+                placeholder="Phone"
+                placeholderTextColor={"#bbb"}
+                onChange={this.handleChange}
+              />
+            </View>
+            <View style={[styles.profileField]}>
+              <MaterialCommunityIcons
+                name="email"
+                size={20}
+                color={"#fff"}
+              />
+              <TextInput
+                style={[styles.profileFieldText]}
+                value={form.email}
+                placeholder="Email"
+                placeholderTextColor={"#bbb"}
+                onChange={this.handleChange}
+              />
+            </View>
+            <View style={[styles.profileField]}>
+              <MaterialCommunityIcons
+                name="baby-face"
+                size={20}
+                color={"#fff"}
+              />
+              <TextInput
+                style={[styles.profileFieldText]}
+                value={form.age}
+                placeholder="Age"
+                placeholderTextColor={"#bbb"}
+                onChange={this.handleChange}
+              />
+            </View>
+            <View style={[styles.profileField]}>
+              <MaterialCommunityIcons
+                name="gender-male-female"
+                size={20}
+                color={"#fff"}
+              />
+              <TextInput
+                style={[styles.profileFieldText]}
+                value={form.genre}
+                placeholder="Genre"
+                placeholderTextColor={"#bbb"}
+                onChange={this.handleChange}
+              />
+            </View>
+            <View style={[styles.profileField]}>
+              <MaterialCommunityIcons
+                name="school"
+                size={20}
+                color={"#fff"}
+              />
+              <TextInput
+                style={[styles.profileFieldText]}
+                value={form.scholarship}
+                placeholder="Scholarship"
+                placeholderTextColor={"#bbb"}
+                onChange={this.handleChange}
+              />
+            </View>
+          </View>
+        </View>
       </View>
     );
   }
@@ -260,8 +247,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#141414",
-  },
-  list: {
     padding: 20,
   },
   profileInformation: {
@@ -298,9 +283,11 @@ const styles = StyleSheet.create({
     marginVertical: 3,
   },
   profileFieldText: {
+    flex: 1,
     color: "white",
-    textAlign: "center",
     marginLeft: 10,
+    borderBottomColor: colors.gray,
+    borderBottomWidth: 1,
   },
   buttonContainer: {
     flexDirection: "row",

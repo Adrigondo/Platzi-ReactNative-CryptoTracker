@@ -9,7 +9,7 @@ import {
 import Colors from "../../resources/colors";
 import GeneralStyles from "../../resources/generalStyles";
 
-class CoinsSearch extends React.Component {
+class Searcher extends React.Component {
   state={
     query: "",
   };
@@ -23,12 +23,13 @@ class CoinsSearch extends React.Component {
   }
 
   render(){
-    const {query} = this.state;
+    const { query } = this.state;
+    const { placeholder } = this.props;
     return(
       <TextInput
         onChangeText={this.handleText}
         value={query}
-        placeholder={"Search coin"}
+        placeholder={placeholder}
         placeholderTextColor={Colors.gray}
         style={[
           style.textInput,
@@ -45,7 +46,7 @@ const style = StyleSheet.create({
   textInput: {
     height: 46,
     backgroundColor: Colors.secondaryColor,
-    paddingLeft: 16,
+    paddingHorizontal: 16,
     color: "white",
   },
   textInputAndroid: {
@@ -64,4 +65,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default CoinsSearch;
+export default Searcher;
